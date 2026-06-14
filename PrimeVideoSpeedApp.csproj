@@ -12,7 +12,7 @@
     <Content Include="speed-control.js" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
 
-  <Target Name="GenerateAppIcon" BeforeTargets="BeforeBuild" Condition="!Exists('Assets\AppIcon.ico') And Exists('Assets\AppIcon.ico.b64')">
-    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -Command &quot;[IO.File]::WriteAllBytes('$(MSBuildProjectDirectory)\Assets\AppIcon.ico',[Convert]::FromBase64String((Get-Content -Raw '$(MSBuildProjectDirectory)\Assets\AppIcon.ico.b64')))&quot;" />
+  <Target Name="GenerateAppIcon" BeforeTargets="BeforeBuild" Condition="!Exists('Assets\AppIcon.ico')">
+    <Exec Command="powershell -NoProfile -ExecutionPolicy Bypass -File &quot;$(MSBuildProjectDirectory)\Assets\generate-app-icon.ps1&quot;" />
   </Target>
 </Project>
